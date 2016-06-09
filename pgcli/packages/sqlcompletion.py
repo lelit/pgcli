@@ -339,7 +339,7 @@ def suggest_based_on_last_token(token, text_before_cursor, full_text,
             last_token = parsed_statement
             if _allow_join_suggestion(parsed_statement):
                 sugs.append(JoinCondition(tables=tables,
-                    parent=filteredtables[-1]))
+                    parent=(filteredtables[-1] if filteredtables else None)))
             return tuple(sugs)
         else:
             # ON <suggestion>
