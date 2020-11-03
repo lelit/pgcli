@@ -903,6 +903,9 @@ class PGCli(object):
             logger.debug("rows: %r", cur)
             logger.debug("status: %r", status)
 
+            if not success and self.table_format == 'csv':
+                self.echo_via_pager(status)
+
             if self._should_limit_output(sql, cur):
                 cur, status = self._limit_output(cur)
 
